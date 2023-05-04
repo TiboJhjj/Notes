@@ -1,22 +1,39 @@
+import React, { useEffect, useState } from "react";
+import { Link, Route, Routes } from "react-router-dom";
+
 import "./App.css";
-import React from "react";
-import { Routes, Route } from "react-router-dom";
-import Notes from "./components/Notes";
-import Navbar from "./components/Navbar";
-import Detail from "./components/Detail";
+import Note from "./components/Note/Note";
 
 function App() {
-    return (
-        <div className="App">
-            <Navbar />
-            <div className="container">
-                <Routes>
-                    <Route path="/notes" element={<Notes />} />
-                    <Route path="/notes/:id" element={<Detail />} />
-                </Routes>
-            </div>
-        </div>
-    );
+  const [notes, setNotes] = useState(null);
+
+  const fetchNotes = async () => {
+    const response = await fetch("/notes");
+    const result = await response.json();
+    setNotes(result);
+  };
+
+  useEffect(() => {
+    fetchNotes();
+  }, []);
+
+  return (
+    <>
+      <aside className="Side">
+        {notes &&
+          notes.map((note) => (
+            <Link to={`/notes/${note.id}`} className="Note-link">
+              {note.title}
+            </Link>
+          ))}
+      </aside>
+      <main className="Main">
+        <Routes>
+          <Route path="/notes/:id" Component={Note} />
+        </Routes>
+      </main>
+    </>
+  );
 }
 
 export default App;
