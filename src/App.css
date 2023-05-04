@@ -4,7 +4,7 @@
 
 .Side {
     position: fixed;
-    width: 15%;
+    width: 25%;
     top: 0px;
     left: 0px;
     bottom: 0px;
@@ -30,9 +30,14 @@
     align-items: center;
 }
 
+.container a {
+    font-size: 16px;
+    color: white;
+    text-decoration: none;
+}
+
 .Main {
     height: 100%;
-    display: flex;
     -moz-box-pack: center;
     justify-content: center;
     -moz-box-align: center;
