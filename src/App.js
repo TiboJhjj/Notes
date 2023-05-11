@@ -21,8 +21,8 @@ function App() {
     return (
         <>
             <aside className="Side">
-                <Link to="/notes/new" className="Button">
-                    Nouvelle note
+                <Link to="/notes/new" className="Note-link">
+                    Nouvelle note ?
                 </Link>
                 {notes &&
                     notes.map((note) => (
